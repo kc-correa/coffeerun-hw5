@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CoffeeRun</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js">
+    </head>
+        <body class="container"> <!-- acts as a wrapper for all the content that needs to adapt to the size of the viewport -->
+        <header>
+            <h1>CoffeeRun</h1>
+        </header>
+        <section> <!-- logically group other markup -->
+            <div class="panel panel-default"> <!-- <div>s are general-purpose block-level containers for other markup. They take up as much horizontal space as provided by their containing parent element -->
+                <div class="panel-body">
+                    <form data-coffee-order="form">
+                        <div class="form-group"> <!-- provides consistent vertical spacing for form elements -->
+                            <label for="coffeeOrder">Coffee Order</label> <!-- When <label> is linked to a form element, you can click the <label>'s text on the page & it will make the linked form element active; always link <label>s to their form elements -->
+                            <input class="form-control" name="coffee" id="coffeeOrder" autofocus> <!-- provides layout and typography styling for your form elements; <input> defaults to a single-line text field -->
+                        </div>
+                        <div class="form-group">
+                            <label for="emailInput">Email</label>
+                            <input class="form-control" type="email" name="emailAddress" id="emailInput" value="" placeholder="dr@who.com">
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="size" value="short">
+                                Short
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="size" value="tall" checked>
+                                Tall
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="size" value="grande">
+                                Grande
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="flavorShot">Flavor Shot</label>
+                            <select id="flavorShot" class="form-control" name="flavor"> <!-- <select> specifies the name-->
+                                <option value="">None</option> <!-- <option> provides one of the possible values -->
+                                <option value="caramel">Caramel</option>
+                                <option value="almond">Almond</option>
+                                <option value="mocha">Mocha</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="strength-level">Caffeine Rating</label>
+                            <input name="strength" id="strengthLevel" type="range" value="30">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Pending Orders:</h4>
+                    <div data-coffee-order="checklist">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+        <script src="scripts/checklist.js" charset="utf-8"></script>
+        <script src="scripts/formhandler.js" charset="utf-8"></script>
+        <script src="scripts/datastore.js" charset="utf-8"></script>
+        <script src="scripts/truck.js" charset="utf-8"></script>
+        <script src="scripts/main.js" charset="utf-8"></script>
+    </body>
+</html>
