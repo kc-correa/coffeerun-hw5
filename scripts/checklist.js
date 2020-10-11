@@ -5,7 +5,7 @@
     var $ = window.jQuery;
 
     function CheckList(selector) {
-        if(!selector) {
+        if (!selector) {
             throw new Error('No selector provided');
         }
 

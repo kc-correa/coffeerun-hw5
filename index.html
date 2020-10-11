@@ -5,8 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CoffeeRun</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js">
+        <style>
+            form :focus:required:invalid {
+                border-color: #a94442; /*Adds a border to any field inside the form that has the pseudo-class :invalid*/
+            }
+        </style>
     </head>
-        <body class="container"> <!-- acts as a wrapper for all the content that needs to adapt to the size of the viewport -->
+    <body class="container"> <!-- acts as a wrapper for all the content that needs to adapt to the size of the viewport -->
         <header>
             <h1>CoffeeRun</h1>
         </header>
@@ -15,12 +20,12 @@
                 <div class="panel-body">
                     <form data-coffee-order="form">
                         <div class="form-group"> <!-- provides consistent vertical spacing for form elements -->
-                            <label for="coffeeOrder">Coffee Order</label> <!-- When <label> is linked to a form element, you can click the <label>'s text on the page & it will make the linked form element active; always link <label>s to their form elements -->
-                            <input class="form-control" name="coffee" id="coffeeOrder" autofocus> <!-- provides layout and typography styling for your form elements; <input> defaults to a single-line text field -->
+                            <label for="coffeeOrder">Order</label> <!-- When <label> is linked to a form element, you can click the <label>'s text on the page & it will make the linked form element active; always link <label>s to their form elements -->
+                            <input class="form-control" name="coffee" id="coffeeOrder" autofocus required pattern="[a-zA-Z\s]+" /> <!-- provides layout and typography styling for your form elements; <input> defaults to a single-line text field -->
                         </div>
                         <div class="form-group">
                             <label for="emailInput">Email</label>
-                            <input class="form-control" type="email" name="emailAddress" id="emailInput" value="" placeholder="dr@who.com">
+                            <input class="form-control" type="email" name="emailAddress" id="emailInput" value="" placeholder="dr@who.com" required /> <!-- Boolean attribute should not be assigned a value-->
                         </div>
                         <div class="radio">
                             <label>
@@ -50,7 +55,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="strength-level">Caffeine Rating</label>
+                            <label for="strengthLevel">Caffeine Rating</label>
                             <input name="strength" id="strengthLevel" type="range" value="30">
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
@@ -68,8 +73,10 @@
             </div>
         </section>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+        <script src="scripts/validation.js" charset="utf-8"></script>
         <script src="scripts/checklist.js" charset="utf-8"></script>
         <script src="scripts/formhandler.js" charset="utf-8"></script>
+        <script src="scripts/remotedatastore.js" charset="utf-8"></script>
         <script src="scripts/datastore.js" charset="utf-8"></script>
         <script src="scripts/truck.js" charset="utf-8"></script>
         <script src="scripts/main.js" charset="utf-8"></script>

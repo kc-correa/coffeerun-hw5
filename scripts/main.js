@@ -2,19 +2,27 @@
     'use strict';
     var FORM_SELECTOR = '[data-coffee-order="form"]';
     var CHECKLIST_SELECTOR = '[data-coffee-order="checklist"]';
+    var SERVER_URL = 'https://co.audstanley.com/coffeeorders';
     var App = window.App;
     var Truck = App.Truck;
     var DataStore = App.DataStore;
+    var RemoteDataStore = App.RemoteDataStore;
     var FormHandler = App.FormHandler;
+    var Validation = App.Validation;
     var CheckList = App.CheckList;
-    var myTruck = new Truck('ncc-1701', new DataStore());
+    var remoteDS = new RemoteDataStore(SERVER_URL);
+    var myTruck = new Truck('ncc-1701', remoteDS);
     window.myTruck = myTruck;
     var checkList = new CheckList(CHECKLIST_SELECTOR);
     checkList.addClickHandler(myTruck.deliverOrder.bind(myTruck)); //addClickHandler needs to be connected to deliverOrder; passes a bound version of deliverOrder to checkList.addClickHandler
     var formHandler = new FormHandler(FORM_SELECTOR);
 
     formHandler.addSubmitHandler(function (data) {
-        myTruck.createOrder(data);
-        checkList.addRow(data);
+        myTruck.createOrder.call(myTruck, data);
+        checkList.addRow.call(checkList, data);
     });
+    console.log(formHandler);
+
+    formHandler.addInputHandler(Validation.isCompanyEmail);
+    
 })(window);
