@@ -11,18 +11,23 @@
     var Validation = App.Validation;
     var CheckList = App.CheckList;
     var remoteDS = new RemoteDataStore(SERVER_URL);
-    var myTruck = new Truck('ncc-1701', remoteDS);
+    var myTruck = new Truck('ncc-1701', new DataStore());
     window.myTruck = myTruck;
     var checkList = new CheckList(CHECKLIST_SELECTOR);
     checkList.addClickHandler(myTruck.deliverOrder.bind(myTruck)); //addClickHandler needs to be connected to deliverOrder; passes a bound version of deliverOrder to checkList.addClickHandler
     var formHandler = new FormHandler(FORM_SELECTOR);
 
     formHandler.addSubmitHandler(function (data) {
-        myTruck.createOrder.call(myTruck, data);
-        checkList.addRow.call(checkList, data);
+        return myTruck.createOrder.call(myTruck, data)
+            .then(function () {
+                checkList.addRow.call(checkList, data);
+            }
+            );
     });
     console.log(formHandler);
 
     formHandler.addInputHandler(Validation.isCompanyEmail);
+
+    myTruck.printOrders(checkList.addRow.bind(checkList));
     
 })(window);

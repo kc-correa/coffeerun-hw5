@@ -12,24 +12,24 @@
             this.serverURL = url;
         }
         ajaxposthelper(type, url, val) {
-            $.ajax({ type: type, url: url, contentType: 'application/json',
+            return $.ajax({ type: type, url: url, contentType: 'application/json',
                 data: JSON.stringify(val), success: function(response) { 
                     console.log('function returned: ' + JSON.stringify(response));
                 }
             });
         }
         ajaxhelper(type, url, cb) {
-            $.ajax({ type: type, url: url, contentType: 'application/json',
+            return $.ajax({ type: type, url: url, contentType: 'application/json',
                 success: function(response) { 
                     console.log('function returned: ' + JSON.stringify(response));
                     if (cb !== undefined) { cb(response); }
                 }
             });
         }
-        add(key, val) { this.ajaxposthelper('POST',   this.serverURL,             val); }
-        get(key, cb)  { this.ajaxhelper    ('GET',    this.serverURL + '/' + key, cb); }
-        getAll(cb)    { this.ajaxhelper    ('GET',    this.serverURL,             cb); }
-        remove(key)   { this.ajaxhelper    ('DELETE', this.serverURL + '/' + key); } 
+        add(key, val) { return this.ajaxposthelper('POST',   this.serverURL,             val); }
+        get(key, cb)  { return this.ajaxhelper    ('GET',    this.serverURL + '/' + key, cb); }
+        getAll(cb)    { return this.ajaxhelper    ('GET',    this.serverURL,             cb); }
+        remove(key)   { return this.ajaxhelper    ('DELETE', this.serverURL + '/' + key); } 
     }
     App.RemoteDataStore = RemoteDataStore;
     window.App = App;

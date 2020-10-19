@@ -18,8 +18,10 @@
     CheckList.prototype.addClickHandler = function (fn) { //Will listen for a click event and bind the callback to the CheckList instance
         this.$element.on('click', 'input', function (event) { //Listen for a click event using jQuery's on method. Filtering selector passed as 2nd argument; tells the event handler to run the callback function only if the event was triggered by an <input> element
             var email = event.target.value;
-            this.removeRow(email);
-            fn(email);
+            fn(email)
+                .then(function () {
+                    this.removeRow(email);
+                }.bind(this));
         }.bind(this)); //Sets context object of the event handler function
     };
 
